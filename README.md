@@ -25,15 +25,20 @@ Example codes for analyses carried out
  - Downsample individual using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
 
 `atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
-  
+
+   - Calculate error rates based on the mitochondria
+     
    `atlas task=recal bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam chr=polarCanada_NC003428 equalBaseFreq minQual=20 maxQual=100 verbose`
 
-## Theta estimates
-for file in *_downsampled*.bam ; do bn=`basename $file .bam`; echo xsbatch -c 2 --mem-per-cpu 100G --Force -- atlas task=estimateTheta bam=$file recal=${bn}_recalibrationEM.txt window=Chromosomes.bed minQual=20 maxQual=100 verbose; done
+ - Theta estimates
 
- - Nucleotide diversity
-angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3 
- - Inbreeding
+`atlas task=estimateTheta bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam recal=BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt window=Chromosomes.bed minQual=20 maxQual=100 verbose`
+
+### Nucleotide diversity
+ 
+ - The above FST command also outputs pi for each population 
+
+### Inbreeding
  - angsd -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 3 -b All_bams -out Inbreeding/All_wsouth_Glf3 -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05
 #zcat Inbreeding/All_wsouth_Glf3.mafs.gz | tail -n +2 | cut -f 6 > Inbreeding/All_wsouth_Glf3.freq
 #/home/zhc860/apps/ngsRelate/ngsRelate -g Inbreeding/All_wsouth_Glf3.glf.gz -n 116 -p 10 -f Inbreeding/All_wsouth_Glf3.freq -O Inbreeding/All_wsouth_Glf3.relatedness -z Inbreeding/Names_all.txt
