@@ -18,13 +18,16 @@ Example codes for analyses carried out
   `angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3`
   
   - Get sliding window FST from pseudohaploid file
-~/Scripts/genomics_general_simonhmartin/popgenWindows.py -f haplo -g PI-FST/Greenland_only.haplo.gz -o PI-FST/Greenland_only_pi_fst_1mb.txt --popsFile PI-FST/Pops.txt -p East_Greenland -p West_Greenland  -w 1000000 -T 10 --roundTo 7 -m 1000
-## Diversity
- - Heterozygosity
-   atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647,0.485,0.388,0.324,0.243,0.162,0.097,0.065,0.032
-   atlas task=recal bam=$file chr=polarCanada_NC003428 equalBaseFreq minQual=20 maxQual=100 verbose ; done
+`~/Scripts/genomics_general_simonhmartin/popgenWindows.py -f haplo -g PI-FST/Greenland_only.haplo.gz -o PI-FST/Greenland_only_pi_fst_1mb.txt --popsFile PI-FST/Pops.txt -p East_Greenland -p West_Greenland  -w 1000000 -T 10 --roundTo 7 -m 1000`
 
-Add minQual https://bitbucket.org/WegmannLab/atlas/wiki/Engine%20Parameters
+## Diversity
+### Heterozygosity
+- Downsample individual using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
+  
+   `atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
+  
+   `atlas task=recal bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam chr=polarCanada_NC003428 equalBaseFreq minQual=20 maxQual=100 verbose`
+
 ## Theta estimates
 for file in *_downsampled*.bam ; do bn=`basename $file .bam`; echo xsbatch -c 2 --mem-per-cpu 100G --Force -- atlas task=estimateTheta bam=$file recal=${bn}_recalibrationEM.txt window=Chromosomes.bed minQual=20 maxQual=100 verbose; done
 
