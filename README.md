@@ -5,7 +5,9 @@ Example codes for analyses carried out
 ## Populations genomics
  - PCA
    
-   `angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
+   `angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
+
+   `pcangsd -b Greenland_only_PCA.beagle.gz -o Greenland_only_PCadapt --threads 5`
    
  - FST (https://github.com/simonhmartin/genomics_general)
  - angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3
@@ -40,12 +42,7 @@ angsd -b ../bamlist_EG -anc ../Outgroups/Spectacled_bear.fa -docounts 1 -ref ~/d
  - Tajima's D
 ~/Software/angsd-0.921/bin/realSFS East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -nsites 20000000 > East.West_20Mb.ml
 #awk '{for(i=1;i<=NF;i++){sum[i]+=$i}}END{for(i=1;i<=NF;i++){printf sum[i]" "}}' East.West_20Mb.ml > East.West.ml
-#prepare the fst for easy window analysis etc
-#~/Software/angsd-0.921/bin/realSFS fst index East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -sfs East.West.ml -fstout East.West_18
-#get the global estimate
-#~/Software/angsd-0.921/bin/realSFS fst stats East.West_18.fst.idx
-#below is not tested that much, but seems to work
-#~/Software/angsd-0.921/bin/realSFS fst stats2 East.West_18.fst.idx -win 50000 -step 10000 >slidingwindow
+
 
 
    
