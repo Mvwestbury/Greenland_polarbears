@@ -22,9 +22,9 @@ Example codes for analyses carried out
 
 ## Diversity
 ### Heterozygosity
-- Downsample individual using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
-  
-   `atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
+ - Downsample individual using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
+
+`atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
   
    `atlas task=recal bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam chr=polarCanada_NC003428 equalBaseFreq minQual=20 maxQual=100 verbose`
 
