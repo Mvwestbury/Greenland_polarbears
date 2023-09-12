@@ -4,7 +4,9 @@ Example codes for analyses carried out
 ## Sequencing read filtering and mapping
 ## Populations genomics
  - PCA
+   
    `angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
+   
  - FST (https://github.com/simonhmartin/genomics_general)
  - angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3
 ~/Scripts/genomics_general_simonhmartin/popgenWindows.py -f haplo -g PI-FST/Greenland_only.haplo.gz -o PI-FST/Greenland_only_pi_fst_1mb.txt --popsFile PI-FST/Pops.txt -p East_Greenland -p West_Greenland  -w 1000000 -T 10 --roundTo 7 -m 1000
