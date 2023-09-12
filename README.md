@@ -3,7 +3,7 @@ Example codes for analyses carried out
 
 ## Sequencing read filtering and mapping
 ## Populations genomics
-# PCA
+### PCA
 - Create Genotype likelihoods using ANGSD
    `angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
 
