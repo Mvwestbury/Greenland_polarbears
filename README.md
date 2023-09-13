@@ -34,6 +34,11 @@ Example codes for analyses carried out
 
 `atlas task=estimateTheta bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam recal=BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt window=Chromosomes.bed minQual=20 maxQual=100 verbose`
 
+| Coverage  | Heterozygosity | Proportion of 20x |
+| ------------- | ------------- | ------------- |
+| 20  | 0.000819111  | 1 |
+| 15  | Content Cell  | |
+
 ### Nucleotide diversity
  
  - The above FST command also outputs pi for each population 
