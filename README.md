@@ -21,8 +21,8 @@ Example codes for analyses carried out
 `~/Scripts/genomics_general_simonhmartin/popgenWindows.py -f haplo -g PI-FST/Greenland_only.haplo.gz -o PI-FST/Greenland_only_pi_fst_1mb.txt --popsFile PI-FST/Pops.txt -p East_Greenland -p West_Greenland  -w 1000000 -T 10 --roundTo 7 -m 1000`
 
 ## Diversity
-### Heterozygosity
- - Downsample individual using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
+### Heterozygosity using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
+ - Downsample individual 
 
 `atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
 
