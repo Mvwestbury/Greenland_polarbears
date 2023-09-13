@@ -4,11 +4,11 @@ Example codes for analyses carried out
 ## Sequencing read filtering and mapping
 ## Populations genomics
 ### PCA
-- Create Genotype likelihoods using ANGSD
+- Create Genotype likelihoods using ANGSD (http://www.popgen.dk/angsd/index.php/ANGSD)
   
    `angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
 
-- Create covariance matrix using PCAngsd
+- Create covariance matrix using PCAngsd (http://www.popgen.dk/software/index.php/PCAngsd)
 
    `pcangsd -b Greenland_only_PCA.beagle.gz -o Greenland_only_PCadapt --threads 5`
    
@@ -22,9 +22,6 @@ Example codes for analyses carried out
 
 ## Diversity
 ### Heterozygosity using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
- - Downsample individual 
-
-`atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
 
    - Calculate error rates based on the mitochondria
      
@@ -33,6 +30,13 @@ Example codes for analyses carried out
  - Theta estimates
 
 `atlas task=estimateTheta bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam recal=BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt window=Chromosomes.bed minQual=20 maxQual=100 verbose`
+
+### Calculate equation to correct for low coverage
+ - Downsample individual 
+
+`atlas task=downsample bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam prob=0.647`
+
+ - Repeat theta estimates above for multiple downsamplings and compare that to the original (we used 20x as the baseline) as seen in the following table 
 
 | Coverage  | Heterozygosity | Proportion of 20x |
 | ------------- | ------------- | ------------- |
@@ -43,6 +47,7 @@ Example codes for analyses carried out
 | 7.5  | 0.000694065  | 0.847  |
 | 5  | 0.000657317  | 0.802  |
 | 3  | 0.00063877  | 0.780  |
+
 
 ### Nucleotide diversity
  
