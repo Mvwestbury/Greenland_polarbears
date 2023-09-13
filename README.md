@@ -17,15 +17,15 @@ Example codes for analyses carried out
   
   `angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3`
   
-  - Get sliding window FST from pseudohaploid file
+ - Get sliding window FST from pseudohaploid file
 `~/Scripts/genomics_general_simonhmartin/popgenWindows.py -f haplo -g PI-FST/Greenland_only.haplo.gz -o PI-FST/Greenland_only_pi_fst_1mb.txt --popsFile PI-FST/Pops.txt -p East_Greenland -p West_Greenland  -w 1000000 -T 10 --roundTo 7 -m 1000`
 
 ## Diversity
 ### Heterozygosity using ATLAS https://bitbucket.org/wegmannlab/atlas/wiki/Home
 
-   - Calculate error rates based on the mitochondria
-     
-   `atlas task=recal bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam chr=polarCanada_NC003428 equalBaseFreq minQual=20 maxQual=100 verbose`
+ - Calculate error rates based on the mitochondria
+
+`atlas task=recal bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam chr=polarCanada_NC003428 equalBaseFreq minQual=20 maxQual=100 verbose`
 
  - Theta estimates
 
@@ -56,10 +56,15 @@ Example codes for analyses carried out
 
 ### Inbreeding
  - Calculate GL in ANGSD as for the PCA but use doglf 3 instead of doglf 2 to get the correct format
+ - 
 `angsd -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 3 -b All_bams -out Inbreeding/All_wsouth_Glf3 -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
+
   - Extract the allele frequencies
+
 `zcat Inbreeding/All_wsouth_Glf3.mafs.gz | tail -n +2 | cut -f 6 > Inbreeding/All_wsouth_Glf3.freq`
+
  - Run the GL and allele frequencies through NGSrelatev2 https://github.com/ANGSD/NgsRelate
+
 `/home/zhc860/apps/ngsRelate/ngsRelate -g Inbreeding/All_wsouth_Glf3.glf.gz -n 116 -p 10 -f Inbreeding/All_wsouth_Glf3.freq -O Inbreeding/All_wsouth_Glf3.relatedness -z Inbreeding/Names_all.txt`
 
 ## Demographic history
