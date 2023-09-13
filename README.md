@@ -36,8 +36,8 @@ Example codes for analyses carried out
 
 | Coverage  | Heterozygosity | Proportion of 20x |
 | ------------- | ------------- | ------------- |
-| 20  | 0.000819111  | 1 |
-| 15  | Content Cell  | |
+| 20  | 0.000819111  | 0.000819111  |
+| 15  | Content Cell  | 0.000819111  |
 
 ### Nucleotide diversity
  
