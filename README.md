@@ -56,7 +56,7 @@ Example codes for analyses carried out
 
 ### Inbreeding
  - Calculate GL in ANGSD as for the PCA but use doglf 3 instead of doglf 2 to get the correct format
- - 
+  
 `angsd -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 3 -b All_bams -out Inbreeding/All_wsouth_Glf3 -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
 
   - Extract the allele frequencies
@@ -75,8 +75,11 @@ Example codes for analyses carried out
  `psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt.psmc BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt.psmcfa`
 
 ### Stairway plots
-angsd -b ../bamlist_EG -anc ../Outgroups/Spectacled_bear.fa -docounts 1 -ref ~/data/References/Polar_bear/Pseudochromo/Polar_reference.fasta -dosaf 1 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -doMajorMinor 4 -doMaf 1 -skipTriallelic 1 -GL 2 -minind 9 -out East_SBanc_18 -rf ~/data/References/Polar_bear/Pseudochromo/regions.18chr.txt -nthreads 10
+ - Calculate sample allele frequencies in ANGSD (bamlist contains only the individuals in the selected population)
+   angsd -b ../bamlist_EG -anc ../Outgroups/Spectacled_bear.fa -docounts 1 -ref Polar_reference.fasta -dosaf 1 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -doMajorMinor 4 -doMaf 1 -skipTriallelic 1 -GL 2 -minind 9 -out East_SBanc_18 -rf regions.18chr.txt -nthreads 10
+ - Convert saf into SFS for input to stairway plotsst
 ~/apps/bin/winsfs East_SBanc_18.saf.idx > East_SBanc_18.sfs
+ - Instructions on using stairway plots are found here https://github.com/xiaoming-liu/stairway-plot-v2 and an example of the blueprint file is included here
    
  - Tajima's D
 ~/Software/angsd-0.921/bin/realSFS East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -nsites 20000000 > East.West_20Mb.ml
