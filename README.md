@@ -70,19 +70,24 @@ Example codes for analyses carried out
 ## Demographic history
 ### PSMC
  - Create the PSMC input psmcfa file using ATLAS (Tomask.bed file contains the regions not of interest, i.e. the inverse of Chromosomes.bed, this was done as specifying the chromosomes/regions of interest took a lot of memory)
+ - 
    `atlas task=PSMC bam=BGI-polarbear-PB_105.polarBear.realigned_RG.bam recal=BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt mask=Tomask.bed minQual=20 maxQual=100 theta=0.00083 verbose`
   - Run the psmcfa through psmc
+  - 
  `psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt.psmc BGI-polarbear-PB_105.polarBear.realigned_RG_recalibrationEM.txt.psmcfa`
 
 ### Stairway plots
  - Calculate sample allele frequencies in ANGSD (bamlist contains only the individuals in the selected population)
-   angsd -b ../bamlist_EG -anc ../Outgroups/Spectacled_bear.fa -docounts 1 -ref Polar_reference.fasta -dosaf 1 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -doMajorMinor 4 -doMaf 1 -skipTriallelic 1 -GL 2 -minind 9 -out East_SBanc_18 -rf regions.18chr.txt -nthreads 10
+ - 
+   `angsd -b ../bamlist_EG -anc ../Outgroups/Spectacled_bear.fa -docounts 1 -ref Polar_reference.fasta -dosaf 1 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -doMajorMinor 4 -doMaf 1 -skipTriallelic 1 -GL 2 -minind 9 -out East_SBanc_18 -rf regions.18chr.txt -nthreads 10`
+   
  - Convert saf into SFS for input to stairway plots
-~/apps/bin/winsfs East_SBanc_18.saf.idx > East_SBanc_18.sfs
+   
+`~/apps/bin/winsfs East_SBanc_18.saf.idx > East_SBanc_18.sfs`
  - Instructions on using stairway plots are found here https://github.com/xiaoming-liu/stairway-plot-v2 and an example of the blueprint file is included here and is called Greenland-PB_ESB_18.blueprint
    
  - Tajima's D
-~/Software/angsd-0.921/bin/realSFS East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -nsites 20000000 > East.West_20Mb.ml
+`~/Software/angsd-0.921/bin/realSFS East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -nsites 20000000 > East.West_20Mb.ml`
 #awk '{for(i=1;i<=NF;i++){sum[i]+=$i}}END{for(i=1;i<=NF;i++){printf sum[i]" "}}' East.West_20Mb.ml > East.West.ml
 
 
