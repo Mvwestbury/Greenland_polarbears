@@ -77,9 +77,9 @@ Example codes for analyses carried out
 ### Stairway plots
  - Calculate sample allele frequencies in ANGSD (bamlist contains only the individuals in the selected population)
    angsd -b ../bamlist_EG -anc ../Outgroups/Spectacled_bear.fa -docounts 1 -ref Polar_reference.fasta -dosaf 1 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -doMajorMinor 4 -doMaf 1 -skipTriallelic 1 -GL 2 -minind 9 -out East_SBanc_18 -rf regions.18chr.txt -nthreads 10
- - Convert saf into SFS for input to stairway plotsst
+ - Convert saf into SFS for input to stairway plots
 ~/apps/bin/winsfs East_SBanc_18.saf.idx > East_SBanc_18.sfs
- - Instructions on using stairway plots are found here https://github.com/xiaoming-liu/stairway-plot-v2 and an example of the blueprint file is included here
+ - Instructions on using stairway plots are found here https://github.com/xiaoming-liu/stairway-plot-v2 and an example of the blueprint file is included here and is called Greenland-PB_ESB_18.blueprint
    
  - Tajima's D
 ~/Software/angsd-0.921/bin/realSFS East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -nsites 20000000 > East.West_20Mb.ml
