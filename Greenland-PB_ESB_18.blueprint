@@ -1,0 +1,34 @@
+#example blueprint file
+#input setting
+popid: Greenland-PB # id of the population (no white space)
+#nseq: 24 # number of sequences
+nseq: 18
+#L: 217245658 # total number of observed nucleic sites, including polymorphic and monomorphic
+L: 1372170000
+whether_folded: false # whethr the SFS is folded (true or false)
+#SFS: 69819.642451 46155.644895 29749.710790 19371.701113 14219.386171 11249.740400 9195.918594 8298.368948 7886.926917 7318.409789 6695.746362 6330.153019 6733.863854 7745.246190 7934.594176 9069.696046 13025.525528
+SFS: 511205.293836 350505.299113 230814.810403 147164.615686 110972.793209 95255.180163 73731.472701 63728.233067 71430.544055 54060.199406 51997.124767 52276.866822 51001.036054 56337.970503 61076.855304 70884.934683 87092.764913
+#SFS: 57075.599322 34720.723470 23429.789770 18593.491382 14947.927749 12366.298409 11117.566863 8180.553273 8118.523184 7242.881677 6427.602800 7397.636046 5103.415006 5314.199028 5246.518276 5108.489680 5488.603643 5728.432929 5573.378306 6096.048420 6391.372874 6826.183838 9184.274070
+#SFS: 67599.850271 42890.321432 29185.272913 23412.817710 19039.101792 15549.361805 13798.871425 10546.411437 10191.080039 8878.540857 7851.046589 11799.942356 6168.296218 6272.516165 6546.705333 6229.250741 6616.769326 6910.078754 7406.385255 7448.843031 7554.638117 8852.376419 10485.535470
+#smallest_size_of_SFS_bin_used_for_estimation: 1 # default is 1; to ignore singletons, uncomment this line and change this number to 2
+#largest_size_of_SFS_bin_used_for_estimation: 29 # default is n-1; to ignore singletons, uncomment this line and change this number to nseq-2
+pct_training: 0.67 # percentage of sites for training
+nrand: 4	8	12	16
+#nrand: 7	15	22	28 # number of random break points for each try (separated by white space)
+#project_dir: Greenland-PB_EGP # project directory
+project_dir: Greenland-PB_ESB_18
+#project_dir: Greenland-PB_WGP
+#project_dir: Greenland-PB_ESB
+stairway_plot_dir: stairway_plot_es # directory to the stairway plot files
+ninput: 200 # number of input files to be created for each estimation
+#random_seed: 6
+#output setting
+mu: 1.83e-8 # assumed mutation rate per site per generation
+year_per_generation: 11.2 # assumed generation time (in years)
+#plot setting
+plot_title: Greenland-PB # title of the plot
+xrange: 0.1,10000 # Time (1k year) range; format: xmin,xmax; "0,0" for default
+yrange: 0,0 # Ne (1k individual) range; format: xmin,xmax; "0,0" for default
+xspacing: 2 # X axis spacing
+yspacing: 2 # Y axis spacing
+fontsize: 12 # Font size
