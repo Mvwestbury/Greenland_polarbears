@@ -2,6 +2,8 @@
 Example codes for analyses carried out
 
 ## Sequencing read filtering and mapping
+ - We used paleomix and all the documentation can be found here https://paleomix.readthedocs.io/en/stable/
+
 ## Populations genomics
 ### PCA
 - Create Genotype likelihoods using ANGSD (http://www.popgen.dk/angsd/index.php/ANGSD)
