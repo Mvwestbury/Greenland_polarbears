@@ -102,10 +102,23 @@ Example codes for analyses carried out
 ## Selection analysis
 ### FST same as above but smaller windows
 ### PCAdapt
-pcangsd -b Greenland_only_PCA.beagle.gz --pcadapt -o Greenland_only_PCadapt --threads 5 --snp_weights --selection
-Rscript pcadapt.R Greenland_only_PCadapt.pcadapt.zscores.npy Greenland_only_PCadapt
+ - Add the pcadapt parameter to PCAngsd and use the same GL (from the PCA step) as input
 
+`pcangsd -b Greenland_only_PCA.beagle.gz --pcadapt -o Greenland_only_PCadapt --threads 5`
 
+ - Convert the output into p-values using the script provided with PCAngsd
+
+`Rscript pcadapt.R Greenland_only_PCadapt.pcadapt.zscores.npy Greenland_only_PCadapt`
+
+### Annotate the polar bear genome
+ - Use miniprot and published polar bear protein sequences to annotate the pseudochromosome polar bear assembly
+   
+`~/Software/miniprot-0.7/bin/miniprot --gff -t 10 ../Polar_reference.fasta GCF_017311325.1_ASM1731132v1_protein.faa.gz > Polarbear_annotations.gff`
+
+ - Find the protein names that occur in the top 1% of Fst windows and contain 2 SNPs in the top 1% of PCAdapt results using bedtools
+
+`bedtools intersect -a ../PI-FST/Top1.txt -b PCAdapt_top1.bed | uniq -d | bedtools intersect -a ~/data/References/Polar_bear/Pseudochromo/Annotation/Polarbear_annotations.gff -b - | cut -f 9 | cut -f 1 -d " " | sed 's/Target=/ /g' | cut -f 2 -d " " |less`
+   
 ## Stable isotopes
  - The R script SI_data_plot.R can be used on the data file PB_WG.txt to generate the stable isotope data biplot presented in Supplementary figure 5.
  - The R script SI_stats_regions.R can be used on the data file PB_WG.txt to statistically compare the stable isotope values from Baffin Bay and Kane Basin.
