@@ -89,12 +89,13 @@ Example codes for analyses carried out
 `~/apps/bin/winsfs East_SBanc_18.saf.idx > East_SBanc_18.sfs`
 
  - Instructions on using stairway plots are found here https://github.com/xiaoming-liu/stairway-plot-v2 and an example of the blueprint file is included here and is called Greenland-PB_ESB_18.blueprint
-   
- - Tajima's D
-`~/Software/angsd-0.921/bin/realSFS East_SBanc_18.saf.idx West_SBanc_18.saf.idx -P 5 -nsites 20000000 > East.West_20Mb.ml`
-#awk '{for(i=1;i<=NF;i++){sum[i]+=$i}}END{for(i=1;i<=NF;i++){printf sum[i]" "}}' East.West_20Mb.ml > East.West.ml
 
+### Tajima's D
+ - Using the SFS calculated above as the input we calculate sliding window Tajima's D using realSFS in ANGSD
+ 
+`~/Software/angsd-0.921/bin/realSFS saf2theta East_SBanc_3x.saf.idx -outname East_SBanc_3x -sfs East_SBanc_3x_nohead.sfs -P 10`
 
+`~/Software/angsd-0.921/bin/thetaStat do_stat East_SBanc_3x.thetas.idx -win 10000000 -step 10000000 -outnames East_SBanc_3x.thetasWindow.gz`
 
    
 ## Selection analysis
