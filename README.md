@@ -117,7 +117,7 @@ Example codes for analyses carried out
 
  - Find the protein names that occur in the top 1% of Fst windows and contain 2 SNPs in the top 1% of PCAdapt results using bedtools
 
-`bedtools intersect -a ../PI-FST/Top1.txt -b PCAdapt_top1.bed | uniq -d | bedtools intersect -a ~/data/References/Polar_bear/Pseudochromo/Annotation/Polarbear_annotations.gff -b - | cut -f 9 | cut -f 1 -d " " | sed 's/Target=/ /g' | cut -f 2 -d " " |less`
+`bedtools intersect -a ../PI-FST/Top1.txt -b PCAdapt_top1.bed | uniq -d | bedtools intersect -a Polarbear_annotations.gff -b - | cut -f 9 | cut -f 1 -d " " | sed 's/Target=/ /g' | cut -f 2 -d " "`
    
 ## Stable isotopes
  - The R script SI_data_plot.R can be used on the data file PB_WG.txt to generate the stable isotope data biplot presented in Supplementary figure 5.
