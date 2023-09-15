@@ -91,7 +91,8 @@ Example codes for analyses carried out
  - Instructions on using stairway plots are found here https://github.com/xiaoming-liu/stairway-plot-v2 and an example of the blueprint file is included here and is called Greenland-PB_ESB_18.blueprint
 
 ### Tajima's D
- - Using the SFS calculated above as the input we calculate sliding window Tajima's D using realSFS in ANGSD
+ - We used the same approach to calculate the SFS as above above with more individuals
+ - We then used the SFS as input to calculate sliding window Tajima's D using realSFS in ANGSD
  
 `~/Software/angsd-0.921/bin/realSFS saf2theta East_SBanc_3x.saf.idx -outname East_SBanc_3x -sfs East_SBanc_3x_nohead.sfs -P 10`
 
