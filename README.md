@@ -123,5 +123,8 @@ Example codes for analyses carried out
  - The R script SI_data_plot.R can be used on the data file PB_WG.txt to generate the stable isotope data biplot presented in Supplementary figure 5.
  - The R script SI_stats_regions.R can be used on the data file PB_WG.txt to statistically compare the stable isotope values from Baffin Bay and Kane Basin.
 
+## Habitat modelling
+ - The data and scripts needed to replicate the habitat modelling can be found on zenodo at ...
+
 
 
