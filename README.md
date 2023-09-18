@@ -7,17 +7,17 @@ Example codes for analyses carried out
 ## Populations genomics
 ### PCA
 - Create Genotype likelihoods using ANGSD (http://www.popgen.dk/angsd/index.php/ANGSD)
-  
-   `angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
+
+`angsd -minind 81 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -SNP_pval 1e-6 -skipTriallelic 1 -doMaf 1 -doGlf 2 -b Greenlandonly_bams -out PCA/Greenland_only_PCA -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1  -domajorminor 4 -nthreads 10 -minmaf 0.05`
 
 - Create covariance matrix using PCAngsd (http://www.popgen.dk/software/index.php/PCAngsd)
 
-   `pcangsd -b Greenland_only_PCA.beagle.gz -o Greenland_only_PCadapt --threads 5`
+`pcangsd -b Greenland_only_PCA.beagle.gz -o Greenland_only_PCadapt --threads 5`
    
 ### FST (https://github.com/simonhmartin/genomics_general)
 - Create pseudohaploid calls using ANGSD
   
-  `angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3`
+`angsd -minind 50 -uniqueOnly 1 -GL 2 -remove_bads 1 -only_proper_pairs 1 -minMapQ 20 -minQ 20 -skipTriallelic 1 -b Greenlandonly_bams -out PI-FST/Greenland_only -ref Polar_reference.fasta -rf regions.18chr.txt -docounts 1 -domajorminor 4 -nthreads 10 -minminor 0 -dohaplocall 2 -setMinDepthInd 3`
   
  - Get sliding window FST from pseudohaploid file
 `~/Scripts/genomics_general_simonhmartin/popgenWindows.py -f haplo -g PI-FST/Greenland_only.haplo.gz -o PI-FST/Greenland_only_pi_fst_1mb.txt --popsFile PI-FST/Pops.txt -p East_Greenland -p West_Greenland  -w 1000000 -T 10 --roundTo 7 -m 1000`
