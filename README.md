@@ -1,5 +1,5 @@
 # Greenland_polarbears
-Example codes for analyses carried out
+Example codes for analyses carried out in the manuscript Impact of Holocene environmental change on the evolutionary ecology of an Arctic top predator
 
 ## Sequencing read filtering and mapping
  - We used paleomix and all the documentation can be found here https://paleomix.readthedocs.io/en/stable/
